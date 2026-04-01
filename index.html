@@ -117,6 +117,7 @@ body{background:var(--bg);color:var(--text);font-family:'Crimson Text',serif;min
 .inn-img{
   height:640px;width:auto;
   display:block;
+  filter:drop-shadow(0 0 18px rgba(26,13,5,0.85));
 }
 /* Bubble del tabernero — posicionada cerca de la cara */
 #bub-inn{
@@ -213,11 +214,11 @@ body{background:var(--bg);color:var(--text);font-family:'Crimson Text',serif;min
 .boost-section{margin-top:.5rem;}
 /* Wheel */
 .wheel-col{display:flex;flex-direction:column;align-items:center;gap:.7rem;}
-.wheel-wrap{position:relative;width:320px;height:320px;}
-#wcanvas{border-radius:50%;box-shadow:0 0 35px rgba(200,146,10,.18),0 0 70px rgba(200,146,10,.06);}
-.w-ptr{position:absolute;top:-16px;left:50%;transform:translateX(-50%);width:0;height:0;border-left:12px solid transparent;border-right:12px solid transparent;border-top:25px solid var(--gold);filter:drop-shadow(0 0 6px var(--gold));z-index:5;}
-.w-spin{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:54px;height:54px;background:radial-gradient(circle at 35% 35%,var(--gold3),var(--gold),var(--golddim));border:2px solid var(--gold3);border-radius:50%;font-size:1.4rem;cursor:pointer;z-index:6;transition:all .2s;box-shadow:0 0 15px rgba(200,146,10,.4);}
-.w-spin:hover{transform:translate(-50%,-50%) scale(1.1);box-shadow:0 0 28px rgba(200,146,10,.6);}
+.wheel-wrap{position:relative;width:640px;height:640px;}
+#wcanvas{border-radius:50%;box-shadow:0 0 60px rgba(200,146,10,.22),0 0 120px rgba(200,146,10,.08),0 0 8px rgba(0,0,0,.8);}
+.w-ptr{position:absolute;top:-24px;left:50%;transform:translateX(-50%);width:0;height:0;border-left:20px solid transparent;border-right:20px solid transparent;border-top:40px solid var(--gold);filter:drop-shadow(0 0 10px var(--gold));z-index:5;}
+.w-spin{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:76px;height:76px;background:radial-gradient(circle at 35% 35%,var(--gold3),var(--gold),var(--golddim));border:3px solid var(--gold3);border-radius:50%;font-size:1.9rem;cursor:pointer;z-index:6;transition:all .2s;box-shadow:0 0 22px rgba(200,146,10,.55);}
+.w-spin:hover{transform:translate(-50%,-50%) scale(1.1);box-shadow:0 0 40px rgba(200,146,10,.75);}
 .w-spin:disabled{opacity:.45;cursor:not-allowed;}
 .btn-oracle{padding:.38rem .9rem;background:linear-gradient(135deg,var(--purple),#5a2a9a);border:1px solid var(--purplebr);border-radius:4px;color:var(--cream);font-family:'Cinzel',serif;font-size:.72rem;cursor:pointer;transition:filter .2s;}
 .btn-oracle:hover{filter:brightness(1.2);}
@@ -317,17 +318,77 @@ body{background:var(--bg);color:var(--text);font-family:'Crimson Text',serif;min
 @keyframes coinFly{0%{transform:translateY(0) rotate(0deg) scale(1);opacity:1;}100%{transform:translateY(-130px) rotate(360deg) scale(.3);opacity:0;}}
 
 /* RESPONSIVE */
+
+/* === TABLET (hasta 940px) === */
 @media(max-width:940px){
   .main-layout{grid-template-columns:1fr;}
   .sidebar{position:static;height:auto;}
   .ruleta-grid{grid-template-columns:1fr;}
+  .wheel-wrap{width:340px;height:340px;}
+  #wcanvas{width:340px;height:340px;}
   .fondo-grid,.perg-grid{grid-template-columns:1fr;}
-  .npc-strip{min-height:420px;}
-  .inn-img{height:380px;width:auto;}
-  #bub-inn{top:55px;left:calc(50% + 10px);min-width:200px;max-width:240px;}
-  .bub{max-width:190px;}
+  .npc-strip{min-height:400px;}
+  .inn-img{height:340px;width:auto;}
+  .npc-char-col{transform:translate(-120px,-80px);}
+  #bub-inn{top:40px;left:calc(50% + 5px);min-width:180px;max-width:220px;transform:scale(1.3);}
+  .bub{max-width:180px;}
+  .wheel-col{gap:.5rem;}
+  .btn-oracle{font-size:.68rem;}
 }
-@media(max-width:560px){.bub{display:none;}.chest-hero{flex-wrap:wrap;}}
+
+/* === MÓVIL GRANDE (hasta 680px) === */
+@media(max-width:680px){
+  .hdr{padding:.5rem .75rem;}
+  .hdr-runes{display:none;}
+  .hdr-sub{display:none;}
+  .ubar{gap:.2rem;}
+  .chip{font-size:.6rem;padding:.13rem .38rem;}
+  .btn-logout,.btn-music{font-size:.6rem;padding:.15rem .4rem;}
+
+  .npc-strip{min-height:300px;}
+  .inn-img{height:270px;}
+  .npc-char-col{transform:translate(-70px,-55px);}
+  #bub-inn{display:none;}
+
+  .chest-hero{flex-wrap:wrap;gap:.6rem;padding:.5rem .9rem;}
+  .chest-amt{font-size:1.1rem;}
+
+  .wheel-wrap{width:280px;height:280px;}
+  #wcanvas{width:280px;height:280px;}
+
+  .tab-btn{font-size:.68rem;padding:.35rem .55rem;}
+  .drinks-grid{grid-template-columns:1fr;}
+  .ruleta-grid{gap:.6rem;}
+}
+
+/* === MÓVIL CHICO (hasta 420px) === */
+@media(max-width:420px){
+  .hdr{padding:.4rem .6rem;}
+  .hdr-title{font-size:.78rem;}
+
+  .npc-strip{min-height:240px;}
+  .inn-img{height:220px;}
+  .npc-char-col{transform:translate(-45px,-35px);}
+
+  .chest-hero{padding:.45rem .6rem;}
+  .chest-wrap img{width:48px;}
+  .chest-amt{font-size:1rem;}
+
+  .wheel-wrap{width:240px;height:240px;}
+  #wcanvas{width:240px;height:240px;}
+  .w-ptr{border-left:14px solid transparent;border-right:14px solid transparent;border-top:28px solid var(--gold);}
+  .w-spin{width:56px;height:56px;font-size:1.4rem;}
+
+  .tabs-area{padding:.6rem .5rem;}
+  .tab-btn{font-size:.62rem;padding:.3rem .45rem;}
+
+  .lg-box{padding:.9rem;}
+  .door-cont{width:160px;height:220px;}
+  .lg-title{font-size:1.2rem;}
+
+  .fondo-amt{font-size:1.7rem;}
+  .modal{padding:1rem;}
+}
 ::-webkit-scrollbar{width:5px;}
 ::-webkit-scrollbar-track{background:var(--wood);}
 ::-webkit-scrollbar-thumb{background:var(--golddim);border-radius:3px;}
@@ -464,7 +525,7 @@ body{background:var(--bg);color:var(--text);font-family:'Crimson Text',serif;min
           <div class="wheel-col">
             <div class="wheel-wrap">
               <div class="w-ptr"></div>
-              <canvas id="wcanvas" width="320" height="320"></canvas>
+              <canvas id="wcanvas" width="640" height="640"></canvas>
               <button class="w-spin" id="spinBtn" onclick="spinWheel()">🎲</button>
             </div>
             <button class="btn-oracle" onclick="oracleConsult()">🔮 Consultar al Oráculo</button>
@@ -577,61 +638,59 @@ body{background:var(--bg);color:var(--text);font-family:'Crimson Text',serif;min
 
 <div class="toast-wrap" id="toasts"></div>
 
-<!-- YouTube background music (hidden) -->
-<div style="position:fixed;left:-9999px;top:-9999px;width:1px;height:1px;overflow:hidden;pointer-events:none">
-  <iframe id="yt-player" width="1" height="1" frameborder="0"
-    allow="autoplay; encrypted-media; accelerometer; gyroscope; picture-in-picture"
-    allowfullscreen></iframe>
-</div>
 
 <script>
 // =====================================================================
 // DATA
 // =====================================================================
 var GAMES=[
-  {id:0,name:'La Corona del Mercader',cat:'estrategia',players:[2,5],exp:true,dur:2,desc:'Monopolios, alianzas y traiciones en las rutas comerciales.'},
-  {id:1,name:'El Asedio de Piedranegra',cat:'epico',players:[2,4],exp:true,dur:3.5,desc:'Construye murallas, recluta mercenarios y resiste el asalto durante diez rondas.'},
-  {id:2,name:'Cronicas del Gremio',cat:'estrategia',players:[3,6],exp:true,dur:2.5,desc:'Lidera tu gremio: forja relaciones, sabotea rivales.'},
-  {id:3,name:'El Alquimista Errante',cat:'aventura',players:[1,4],exp:false,dur:1.5,desc:'Recorre aldeas buscando ingredientes legendarios.'},
-  {id:4,name:'El Festin de los Reyes',cat:'social',players:[3,8],exp:false,dur:1,desc:'Un banquete real, siete traidores, un rey que no sabe en quien confiar.'},
-  {id:5,name:'Guardianes del Portal',cat:'rapido',players:[2,6],exp:false,dur:1,desc:'Criaturas del otro mundo se filtran por los portales.'},
-  {id:6,name:'El Concilio de los Magos',cat:'social',players:[4,7],exp:true,dur:3,desc:'Un jugador oculta el grimorio prohibido.'},
-  {id:7,name:'Leyendas del Bosque Antiguo',cat:'aventura',players:[1,5],exp:true,dur:2.5,desc:'El bosque respira y castiga. Explora sus secretos.'},
-  {id:8,name:'Piratas del Mar de Bronce',cat:'rapido',players:[2,6],exp:true,dur:1.5,desc:'Canones y saqueos. El capitan con mas oro gana.'},
-  {id:9,name:'La Maldicion del Castillo',cat:'misterio',players:[1,6],exp:false,dur:3,desc:'Un castillo maldito, diez habitaciones, un solo asesino.'},
-  {id:10,name:'Duelo de Runas',cat:'rapido',players:[2,4],exp:false,dur:1,desc:'Dos hechiceros, un tablero de runas, tres turnos.'},
-  {id:11,name:'El Imperio de Ceniza',cat:'epico',players:[2,5],exp:true,dur:4,desc:'Civilizaciones nacen y caen. Expande, invade, negocia.'},
-  {id:12,name:'Fabulas del Norte Salvaje',cat:'aventura',players:[2,4],exp:true,dur:2,desc:'Cruzar la tundra con solo lo que cargues.'},
-  {id:13,name:'El Mercado de las Sombras',cat:'misterio',players:[3,6],exp:false,dur:1.5,desc:'Un mercado nocturno donde todo se vende.'},
-  {id:14,name:'Caballeros Sin Honor',cat:'social',players:[2,6],exp:true,dur:2.5,desc:'Torneos y promesas rotas. Gana la corona aunque debas sobornar al heraldo.'},
-  {id:15,name:'La Profecia del Ultimo Oraculo',cat:'epico',players:[1,4],exp:true,dur:3.5,desc:'El mundo termina en siete turnos.'},
-  {id:16,name:'Torneo de los Tres Reinos',cat:'social',players:[2,8],exp:false,dur:2,desc:'Tres reinos, ocho campeones, un rey muerto.'},
-  {id:17,name:'El Laberinto de Espejos',cat:'misterio',players:[2,4],exp:true,dur:2,desc:'Cada reflejo muestra una realidad distinta.'},
-  {id:18,name:'El Ultimo Baluarte',cat:'epico',players:[3,6],exp:true,dur:3,desc:'Cien enemigos. Cinco heroes. Coopera o muere.'},
-  {id:19,name:'La Ruta de las Especias',cat:'estrategia',players:[2,5],exp:false,dur:2,desc:'Caravanas y mapas incompletos. Llega primero al sultan.'}
+  {id:0,name:'Everdell',cat:'estrategia',players:[1,4],exp:true,dur:1.5,desc:'Construye tu ciudad en el bosque de Everdell. Trabajadores, cartas y estaciones se combinan en una joya del eurogame.'},
+  {id:1,name:'Guerra del Anillo',cat:'epico',players:[2,4],exp:true,dur:4,desc:'El destino de la Tierra Media en tus manos. Sombra contra Mundo Libre en una batalla épica sin igual.'},
+  {id:2,name:'Maladum',cat:'aventura',players:[1,4],exp:true,dur:2,desc:'Dungeon crawler sandbox con misiones dinámicas, escenarios únicos y personajes que evolucionan con cada campaña.'},
+  {id:3,name:'Robinson Crusoe',cat:'aventura',players:[1,4],exp:true,dur:2,desc:'Sobreviví en una isla inhóspita. Construye refugio, caza y reza para que el clima te dé tregua esta ronda.'},
+  {id:4,name:'Splendor',cat:'estrategia',players:[2,4],exp:true,dur:1,desc:'Colecciona gemas, desarrolla minas y atrae a los nobles más influyentes. Elegante, sencillo y adictivo.'},
+  {id:5,name:'Daitoshi',cat:'estrategia',players:[1,4],exp:false,dur:2,desc:'Construye la ciudad perfecta en el Japón feudal. Un trabajador compartido entre rivales genera tensión en cada acción.'},
+  {id:6,name:'Ratas de Wistar',cat:'estrategia',players:[1,4],exp:true,dur:1.5,desc:'La familia de ratas más astuta sobrevive. Rueda de acciones rotativa que nunca deja el mismo camino dos veces.'},
+  {id:7,name:'Corona de Hierro',cat:'estrategia',players:[2,4],exp:false,dur:1.5,desc:'Doble tablero, intrigas cortesanas y batallas medievales. La corona pesa más de lo que cualquiera imagina.'},
+  {id:8,name:'Isla / Desierto / Selva Prohibida',cat:'aventura',players:[2,5],exp:false,dur:1,desc:'Cooperativo contrarreloj. La isla se hunde, el desierto avanza, la selva cobra vida. Escapa antes de que sea tarde.'},
+  {id:9,name:'Kemet: Blood & Sand',cat:'epico',players:[2,5],exp:true,dur:1.5,desc:'Dioses egipcios, ejércitos implacables y 48 losetas de poder. El combate es la única forma de ganar puntos.'},
+  {id:10,name:'Mansiones de la Locura',cat:'misterio',players:[1,5],exp:true,dur:3,desc:'La app narra, el tablero te atrapa. Investiga crímenes lovecraftianos antes de que los investigadores pierdan la cordura.'},
+  {id:11,name:'Dungeon Fighters',cat:'aventura',players:[1,6],exp:true,dur:1,desc:'Tira el dado con la técnica especial o el monstruo no muere. Destreza física, caos y carcajadas garantizadas.'},
+  {id:12,name:'Catan',cat:'estrategia',players:[3,6],exp:true,dur:2,desc:'El clásico de los clásicos. Coloniza, comercia y negocia. Cuidado con el ladrón y especialmente con tu vecino.'},
+  {id:13,name:'Ecos: First Continent',cat:'rapido',players:[2,6],exp:true,dur:1.5,desc:'Bingo simultáneo que construye un continente vivo. Rápido, fresco y con un mapa distinto en cada partida.'},
+  {id:14,name:'El Ansia',cat:'rapido',players:[2,6],exp:true,dur:1.5,desc:'Eres un vampiro que se aleja demasiado del castillo. La carrera contra el amanecer nunca fue tan adictiva.'},
+  {id:15,name:'Leyendas de Andor',cat:'aventura',players:[2,6],exp:true,dur:2,desc:'El reino de Andor necesita héroes. Cooperativo narrativo con leyendas encadenadas y una campaña que crece.'},
+  {id:16,name:'Munchkin',cat:'social',players:[3,6],exp:true,dur:2,desc:'Mata el monstruo, roba el tesoro, traiciona al compañero. El caos y la risa están absolutamente garantizados.'},
+  {id:17,name:'Root',cat:'estrategia',players:[2,6],exp:true,dur:1.5,desc:'Cada facción del bosque juega completamente diferente. El gato construye, el águila vuela y los ratones se rebelan.'},
+  {id:18,name:'Western Legends',cat:'aventura',players:[2,6],exp:true,dur:1.5,desc:'Sandbox total en el Viejo Oeste. Sé forajido, alguacil, minero o jugador de póker. Tu leyenda, tus reglas.'},
+  {id:19,name:'Bang!',cat:'social',players:[4,8],exp:true,dur:1,desc:'Roles ocultos en el salvaje oeste. ¿Quién protege al sheriff? ¿Quién es el forajido? La paranoia es el juego.'},
+  {id:20,name:'Scythe',cat:'estrategia',players:[1,7],exp:true,dur:2,desc:'Europa dieselpunk, facciones asimétricas y mecas gigantes. El conflicto se insinúa pero rara vez explota.'},
+  {id:21,name:'Dixit',cat:'social',players:[3,12],exp:true,dur:1,desc:'Imágenes oníricas y pistas crípticas. El narrador no puede ser demasiado obvio ni demasiado oscuro. Equilibrio puro.'}
 ];
 
 var GAME_TITLES=[
-  ['Mercader de Hierro','Señor de las Rutas','El Usurero','Rey del Comercio'],
-  ['Defensor de Piedranegra','El Ultimo Muro','Comandante de la Brecha','Capitan Sin Rendicion'],
-  ['Gran Maestro del Gremio','El Saboteador','Arquitecto de Alianzas','Lider en las Sombras'],
-  ['El Gran Alquimista','Cazador de Ingredientes','Maestro de Pociones','El Errante Eterno'],
-  ['El Rey Traicionado','El Traidor Perfecto','Maestro del Banquete','El que Sobrevivio'],
-  ['Guardian Supremo','Sellador de Portales','El Ultimo Defensor','Centinela Eterno'],
-  ['Archimago del Concilio','El que Ocultaba el Grimorio','Maestro de las Sombras Arcanas','El Gran Inquisidor'],
-  ['Patron del Bosque','El que Sobrevivio los Arboles','Explorador de las Sombras','Guardian de los Secretos'],
-  ['Capitan del Mar de Bronce','El Gran Pirata','Saqueador de Leyenda','El que hundio la Flota'],
-  ['Detective del Castillo','El Asesino Perfecto','Investigador de Ultratumba','Resolvedor de Maldiciones'],
-  ['Gran Hechicero de Runas','Maestro del Tablero','El Imparable','Tejedor de Magia'],
-  ['Fundador del Imperio','El que Quemo Todo','Constructor de Civilizaciones','Gran Conquistador'],
-  ['Explorador del Norte','El que Cruzo la Tundra','Superviviente Legendario','Maestro del Frio'],
-  ['Amo del Mercado Nocturno','El Negociante Oscuro','Maestro de los Tratos','Señor de las Sombras'],
-  ['El Caballero Mas Deshonesto','Campeon del Torneo','El Sobornador Magistral','Rey Sin Honor'],
-  ['El que Salvo el Mundo','Oraculo de los Tiempos','Heroe de la Profecia','El Ultimo Turno'],
-  ['Rey de los Tres Reinos','El Gran Campeon','Unificador de Tronos','El que Murio en Pie'],
-  ['Maestro de los Espejos','El que Navego los Reflejos','Señor de Realidades','El Desconcertante'],
-  ['Ultimo Heroe del Baluarte','El que Resistio Cien','Lider Cooperativo Supremo','Tapon de la Brecha'],
-  ['Mercader de las Especias','El que Llego Primero','Sultan del Camino','Maestro de Caravanas']
+  ['Patron del Valle','Arquitecto del Bosque','Maestro de las Estaciones','El Gran Constructor de Everdell'],
+  ['Portador del Anillo','Señor de las Sombras','Defensor del Mundo Libre','El que Llevo el Anillo al Fuego'],
+  ['Azote de Mazmorras','El Superviviente del Abismo','Maestro del Laberinto','El que Venció a Oblivion'],
+  ['El Naufrago Eterno','Señor de la Isla','Constructor del Refugio','El Gran Superviviente'],
+  ['Mercader de Gemas','Favorito de los Nobles','Señor de las Minas','El Gran Joyero'],
+  ['Arquitecto de Daitoshi','Maestro del Colocador','El Gran Planificador','Señor de la Ciudad Perfecta'],
+  ['Jefe de la Colonia','El Raton Mas Astuto','Maestro de la Rueda','El Gran Roedor'],
+  ['El Coronado','Señor del Doble Tablero','Rey Sin Rival','El Gran Estratega Medieval'],
+  ['El Gran Escapista','Maestro de la Supervivencia','El que Venció a la Isla','Explorador Sin Miedo'],
+  ['Faraon de la Victoria','Dios del Desierto','Portador del Poder Divino','El Gran Conquistador de Kemet'],
+  ['Detective de Arkham','El que Mantuvo Cordura','Investigador Supremo','El que Resolvió el Horror'],
+  ['El Mejor Lanzador','Maestro de la Mazmorra','El que Nunca Falla','Campeon del Dado'],
+  ['El Gran Colonizador','Maestro del Comercio','Señor de los Puertos','El que Bloqueó con el Ladrón'],
+  ['El Gran Naturalista','Creador de Continentes','Maestro del Ecosistema','El que Completó Primero'],
+  ['El Vampiro Veloz','Maestro del Amanecer','El que Volvió a Tiempo','El Gran Cazador de la Noche'],
+  ['Heroe de Andor','El Gran Defensor del Reino','Maestro de la Leyenda','El que Salvo Andor'],
+  ['El Gran Traidor','Maestro del Caos','El Nivel 10','El que Apuñaló por la Espalda'],
+  ['Señor del Bosque','Maestro de la Asimetria','El que Dominó su Facción','Gran Conquistador Forestal'],
+  ['Leyenda del Oeste','El Gran Forajido','Alguacil Incorruptible','El que Ganó en el Poker'],
+  ['El Sheriff Invencible','El Forajido Perfecto','El Renegado','El que Descubrió a Todos'],
+  ['Lider de Faccion','El Gran Mecanico','Maestro de la Siberia Dieselpunk','El que Cerró la Fábrica'],
+  ['El Gran Narrador','Maestro de las Imagenes','El Criptico Perfecto','El que Engañó a Todos']
 ];
 
 var DRINKS=[
@@ -742,55 +801,13 @@ function rep(wins){for(var i=REP.length-1;i>=0;i--){if(wins>=REP[i].min)return R
 })();
 
 // =====================================================================
-// COIN SOUND (realistic)
+// COIN SOUND
 // =====================================================================
 function playCoinSound(){
   try{
-    var AC=window.AudioContext||window.webkitAudioContext;
-    if(!AC)return;
-    var ctx=new AC();
-    function mkCoin(delay,freq,vol){
-      var o=ctx.createOscillator();
-      var o2=ctx.createOscillator();
-      var gain=ctx.createGain();
-      var filt=ctx.createBiquadFilter();
-      var compressor=ctx.createDynamicsCompressor();
-      filt.type='bandpass';
-      filt.frequency.value=freq;
-      filt.Q.value=12;
-      o.type='sine';
-      o.frequency.setValueAtTime(freq,ctx.currentTime+delay);
-      o.frequency.exponentialRampToValueAtTime(freq*0.65,ctx.currentTime+delay+0.18);
-      o2.type='triangle';
-      o2.frequency.setValueAtTime(freq*1.48,ctx.currentTime+delay);
-      o2.frequency.exponentialRampToValueAtTime(freq*0.9,ctx.currentTime+delay+0.1);
-      var g2=ctx.createGain();
-      g2.gain.setValueAtTime(0,ctx.currentTime+delay);
-      g2.gain.linearRampToValueAtTime(vol*.18,ctx.currentTime+delay+0.001);
-      g2.gain.exponentialRampToValueAtTime(0.0001,ctx.currentTime+delay+0.12);
-      o2.connect(filt);filt.connect(g2);g2.connect(compressor);
-      gain.gain.setValueAtTime(0,ctx.currentTime+delay);
-      gain.gain.linearRampToValueAtTime(vol,ctx.currentTime+delay+0.001);
-      gain.gain.exponentialRampToValueAtTime(0.0001,ctx.currentTime+delay+0.45);
-      o.connect(gain);gain.connect(compressor);
-      compressor.connect(ctx.destination);
-      o.start(ctx.currentTime+delay);o.stop(ctx.currentTime+delay+0.55);
-      o2.start(ctx.currentTime+delay);o2.stop(ctx.currentTime+delay+0.2);
-    }
-    // Simulate a handful of coins falling/clinking
-    var coinData=[
-      [0,    2100, .28],
-      [0.03, 1650, .22],
-      [0.08, 2800, .25],
-      [0.14, 1900, .20],
-      [0.21, 2400, .24],
-      [0.29, 1500, .18],
-      [0.37, 3100, .20],
-      [0.44, 1750, .15]
-    ];
-    coinData.forEach(function(c){mkCoin(c[0],c[1],c[2]);});
-    // Closing roll: 3 descending notes
-    [0.55,0.65,0.75].forEach(function(t,i){mkCoin(t,1400-i*200,.12);});
+    var a=new Audio('mp3/coins.mp3');
+    a.volume=0.8;
+    a.play();
   }catch(e){}
 }
 
@@ -839,19 +856,22 @@ document.addEventListener('click',function(e){
 // =====================================================================
 // YOUTUBE MUSIC
 // =====================================================================
-var YT_ID='uzFSc_78UY4';
+var tavernAudio=null;
 function startMusic(){
   if(musicOn)return;
-  var iframe=document.getElementById('yt-player');
-  iframe.src='https://www.youtube-nocookie.com/embed/'+YT_ID+'?autoplay=1&loop=1&playlist='+YT_ID+'&controls=0&disablekb=1&fs=0&modestbranding=1&rel=0&enablejsapi=1&origin='+encodeURIComponent(location.origin||'http://localhost');
+  if(!tavernAudio){
+    tavernAudio=new Audio('mp3/The Nightingale.mp3');
+    tavernAudio.loop=true;
+    tavernAudio.volume=0.5;
+  }
+  tavernAudio.play().catch(function(){});
   musicOn=true;
   updateMusicBtn();
   toast('♪ Música de taberna iniciada','');
 }
 function stopMusicFn(){
   if(!musicOn)return;
-  var iframe=document.getElementById('yt-player');
-  iframe.src='';
+  if(tavernAudio){tavernAudio.pause();tavernAudio.currentTime=0;}
   musicOn=false;
   updateMusicBtn();
   toast('⏹ Música detenida','');
@@ -1080,34 +1100,169 @@ function filteredGames(){
   });
   return base;
 }
+// ---- text wrap helper ----
+function wrapText(ctx,text,maxW){
+  var words=text.split(' ');
+  if(words.length===1)return [text];
+  var lines=[],cur=words[0];
+  for(var i=1;i<words.length;i++){
+    var test=cur+' '+words[i];
+    if(ctx.measureText(test).width<=maxW){cur=test;}
+    else{lines.push(cur);cur=words[i];if(lines.length>=2)break;}
+  }
+  lines.push(cur);
+  return lines.slice(0,2);
+}
+
 function buildWheel(){
   var canvas=document.getElementById('wcanvas');
   var ctx=canvas.getContext('2d');
+  var W=640,cx=320,cy=320,R=298,Ri=64;
+  ctx.clearRect(0,0,W,W);
+
   var games=filteredGames();
   var unique=[...new Set(games.map(function(g){return g.id;}))];
   document.getElementById('gcnt').textContent=unique.length+' juegos';
   var n=games.length;
-  if(n===0){ctx.clearRect(0,0,320,320);ctx.fillStyle='rgba(14,8,2,.9)';ctx.beginPath();ctx.arc(160,160,160,0,Math.PI*2);ctx.fill();ctx.fillStyle='#c8920a';ctx.font='14px Cinzel';ctx.textAlign='center';ctx.fillText('Sin juegos',160,165);return;}
-  ctx.clearRect(0,0,320,320);
+
+  if(n===0){
+    var eg=ctx.createRadialGradient(cx,cy,20,cx,cy,R);
+    eg.addColorStop(0,'#4a2a0a');eg.addColorStop(1,'#1a0a02');
+    ctx.beginPath();ctx.arc(cx,cy,R,0,Math.PI*2);ctx.fillStyle=eg;ctx.fill();
+    ctx.fillStyle='#c8920a';ctx.font='bold 22px Cinzel';ctx.textAlign='center';
+    ctx.fillText('Sin juegos',cx,cy+8);
+    return;
+  }
+
+  // Alternating wood tones — 10 pairs [mid, dark]
+  var WOOD=[
+    ['#6b3010','#2e1404'],['#3d1a04','#1a0800'],
+    ['#7a4018','#3d1e08'],['#4a2208','#200c02'],
+    ['#5c2c0e','#2a1204'],['#6a3818','#321808'],
+    ['#452010','#1e0e04'],['#7e3e18','#3a1a06'],
+    ['#542810','#281004'],['#3a1a06','#180802']
+  ];
+
   var step=(Math.PI*2)/n;
+
+  // === SEGMENTS ===
   games.forEach(function(g,i){
     var start=wheelAngle+i*step,end=start+step;
-    var ci=g.id%WHEEL_COLORS.length;
-    ctx.beginPath();ctx.moveTo(160,160);ctx.arc(160,160,158,start,end);ctx.closePath();
-    ctx.fillStyle=WHEEL_COLORS[ci];ctx.fill();
-    ctx.strokeStyle='rgba(0,0,0,.35)';ctx.lineWidth=1;ctx.stroke();
-    // label
-    var mid=start+step/2,r=100;
-    var tx=160+r*Math.cos(mid),ty=160+r*Math.sin(mid);
-    ctx.save();ctx.translate(tx,ty);ctx.rotate(mid+Math.PI/2);
-    ctx.fillStyle='rgba(240,230,200,.92)';ctx.font='bold 9px Cinzel';ctx.textAlign='center';
-    var lbl=g.name.length>16?g.name.substring(0,14)+'…':g.name;
-    ctx.fillText(lbl,0,0);ctx.restore();
+    var wt=WOOD[i%WOOD.length];
+    var grad=ctx.createRadialGradient(cx,cy,Ri,cx,cy,R);
+    grad.addColorStop(0,wt[0]);
+    grad.addColorStop(0.55,wt[0]);
+    grad.addColorStop(0.85,wt[1]);
+    grad.addColorStop(1,wt[1]);
+    ctx.beginPath();ctx.moveTo(cx,cy);ctx.arc(cx,cy,R,start,end);ctx.closePath();
+    ctx.fillStyle=grad;ctx.fill();
+
+    // Wood grain lines (fixed, no random)
+    ctx.save();
+    ctx.beginPath();ctx.moveTo(cx,cy);ctx.arc(cx,cy,R,start,end);ctx.closePath();ctx.clip();
+    [0.3,0.55,0.78].forEach(function(t){
+      var gr=Ri+(R-Ri)*t;
+      ctx.beginPath();ctx.arc(cx+(i%2===0?8:-8),cy+(i%3===0?6:-6),gr,start-0.05,end+0.05);
+      ctx.strokeStyle='rgba(0,0,0,0.07)';ctx.lineWidth=1.2;ctx.stroke();
+    });
+    ctx.restore();
   });
-  // center circle
-  ctx.beginPath();ctx.arc(160,160,32,0,Math.PI*2);
-  ctx.fillStyle='rgba(10,5,2,.95)';ctx.fill();
-  ctx.strokeStyle='#c8920a';ctx.lineWidth=2;ctx.stroke();
+
+  // === METALLIC DIVIDERS ===
+  games.forEach(function(g,i){
+    var angle=wheelAngle+i*step;
+    var cos_a=Math.cos(angle),sin_a=Math.sin(angle);
+    var x1=cx+Ri*cos_a,y1=cy+Ri*sin_a;
+    var x2=cx+R*cos_a, y2=cy+R*sin_a;
+    // Dark base
+    ctx.beginPath();ctx.moveTo(x1,y1);ctx.lineTo(x2,y2);
+    ctx.strokeStyle='#0e0602';ctx.lineWidth=5;ctx.stroke();
+    // Bronze
+    ctx.beginPath();ctx.moveTo(x1,y1);ctx.lineTo(x2,y2);
+    ctx.strokeStyle='#9a7020';ctx.lineWidth=2.5;ctx.stroke();
+    // Gold highlight
+    ctx.beginPath();ctx.moveTo(x1,y1);ctx.lineTo(x2,y2);
+    ctx.strokeStyle='#e8c048';ctx.lineWidth=0.9;ctx.stroke();
+  });
+
+  // === TEXT LABELS ===
+  var fs=n<=6?14:n<=10?12:n<=15?10.5:9;
+  var tR=Ri+(R-Ri)*0.60;
+  var maxW=n<=6?130:n<=10?100:n<=15?78:62;
+
+  games.forEach(function(g,i){
+    var mid=wheelAngle+i*step+step/2;
+    var tx=cx+tR*Math.cos(mid),ty=cy+tR*Math.sin(mid);
+    ctx.save();
+    ctx.translate(tx,ty);ctx.rotate(mid+Math.PI/2);
+    ctx.textAlign='center';
+    ctx.font='bold '+fs+'px Cinzel';
+    var lines=wrapText(ctx,g.name,maxW);
+    var lh=fs+3;
+    var oy=-(lines.length-1)*lh/2;
+    lines.forEach(function(ln,li){
+      var ly=oy+li*lh;
+      ctx.fillStyle='rgba(0,0,0,0.75)';ctx.fillText(ln,1,ly+1);
+      ctx.fillStyle='#f0e0a0';ctx.fillText(ln,0,ly);
+    });
+    ctx.restore();
+  });
+
+  // === OUTER RIM (layered metal) ===
+  // Drop shadow
+  ctx.beginPath();ctx.arc(cx,cy,R+10,0,Math.PI*2);
+  ctx.strokeStyle='rgba(0,0,0,0.55)';ctx.lineWidth=14;ctx.stroke();
+  // Dark iron
+  ctx.beginPath();ctx.arc(cx,cy,R+5,0,Math.PI*2);
+  ctx.strokeStyle='#1c0e04';ctx.lineWidth=12;ctx.stroke();
+  // Bronze layer
+  ctx.beginPath();ctx.arc(cx,cy,R+5,0,Math.PI*2);
+  ctx.strokeStyle='#7a5018';ctx.lineWidth=8;ctx.stroke();
+  // Gold outer
+  ctx.beginPath();ctx.arc(cx,cy,R+5,0,Math.PI*2);
+  ctx.strokeStyle='#c89020';ctx.lineWidth=4;ctx.stroke();
+  // Bright edge
+  ctx.beginPath();ctx.arc(cx,cy,R+7,0,Math.PI*2);
+  ctx.strokeStyle='#f0c840';ctx.lineWidth=1.5;ctx.stroke();
+  // Inner accent
+  ctx.beginPath();ctx.arc(cx,cy,R-4,0,Math.PI*2);
+  ctx.strokeStyle='rgba(200,146,10,0.5)';ctx.lineWidth=1.5;ctx.stroke();
+
+  // === RIM RIVETS ===
+  var rivetN=Math.max(16,n*2<=40?n*2:40);
+  for(var ri=0;ri<rivetN;ri++){
+    var ra=(Math.PI*2/rivetN)*ri;
+    var rx=cx+(R+4)*Math.cos(ra),ry=cy+(R+4)*Math.sin(ra);
+    ctx.beginPath();ctx.arc(rx,ry,5,0,Math.PI*2);
+    ctx.fillStyle='#1a0a02';ctx.fill();
+    ctx.strokeStyle='#c89030';ctx.lineWidth=1.5;ctx.stroke();
+    ctx.beginPath();ctx.arc(rx-1.5,ry-1.5,2.2,0,Math.PI*2);
+    ctx.fillStyle='rgba(255,220,100,0.4)';ctx.fill();
+  }
+
+  // === CENTER BOSS ===
+  // Shadow
+  ctx.beginPath();ctx.arc(cx,cy,Ri+14,0,Math.PI*2);
+  ctx.fillStyle='rgba(0,0,0,0.4)';ctx.fill();
+  // Iron ring
+  ctx.beginPath();ctx.arc(cx,cy,Ri+10,0,Math.PI*2);
+  ctx.fillStyle='#1a0a02';ctx.fill();
+  ctx.strokeStyle='#c89020';ctx.lineWidth=3;ctx.stroke();
+  // Metallic boss
+  var bg=ctx.createRadialGradient(cx-18,cy-18,5,cx,cy,Ri+8);
+  bg.addColorStop(0,'#f0d870');bg.addColorStop(0.25,'#d4a030');
+  bg.addColorStop(0.6,'#9a6820');bg.addColorStop(0.9,'#3d1e08');
+  ctx.beginPath();ctx.arc(cx,cy,Ri+8,0,Math.PI*2);
+  ctx.fillStyle=bg;ctx.fill();
+  // Gold ring
+  ctx.beginPath();ctx.arc(cx,cy,Ri+8,0,Math.PI*2);
+  ctx.strokeStyle='#f0c840';ctx.lineWidth=2;ctx.stroke();
+  // Center gem
+  ctx.beginPath();ctx.arc(cx,cy,20,0,Math.PI*2);
+  ctx.fillStyle='#0c0602';ctx.fill();
+  ctx.strokeStyle='#c89020';ctx.lineWidth=2.5;ctx.stroke();
+  ctx.beginPath();ctx.arc(cx-5,cy-5,8,0,Math.PI*2);
+  ctx.fillStyle='rgba(200,150,30,0.18)';ctx.fill();
 }
 function spinWheel(){
   if(spinning)return;
@@ -1116,11 +1271,16 @@ function spinWheel(){
   spinning=true;
   document.getElementById('spinBtn').disabled=true;
   document.getElementById('wresult').classList.remove('on');
-  var extra=Math.PI*2*(8+Math.floor(Math.random()*6));
+  // Sonido de ruleta — se detiene cuando termina el giro
+  var ruletaAudio=new Audio('mp3/ruleta.mp3');
+  ruletaAudio.volume=0.75;
+  ruletaAudio.play().catch(function(){});
+  var extra=Math.PI*2*(14+Math.floor(Math.random()*6));
   var targetOffset=Math.random()*Math.PI*2;
   var totalRot=extra+targetOffset;
-  var dur=3800,start=null,from=wheelAngle;
-  function ease(t){return t<1?1-Math.pow(1-t,3):1;}
+  var dur=7000,start=null,from=wheelAngle;
+  // Empieza rápido, frena suave al final (cubic ease-out agresivo)
+  function ease(t){return 1-Math.pow(1-t,4);}
   function anim(ts){
     if(!start)start=ts;
     var p=Math.min((ts-start)/dur,1);
@@ -1132,6 +1292,11 @@ function spinWheel(){
       wheelAngle=wheelAngle%(Math.PI*2);
       spinning=false;
       document.getElementById('spinBtn').disabled=false;
+      // Fade out del audio de ruleta
+      var fadeSteps=20,fadeInterval=setInterval(function(){
+        if(ruletaAudio.volume>0.05){ruletaAudio.volume=Math.max(0,ruletaAudio.volume-0.04);}
+        else{ruletaAudio.pause();ruletaAudio.currentTime=0;clearInterval(fadeInterval);}
+      },50);
       // determine result: pointer is at top = -PI/2 from center
       var n=games.length,step=(Math.PI*2)/n;
       var normalized=((-wheelAngle%(Math.PI*2))+(Math.PI*2))%(Math.PI*2);
