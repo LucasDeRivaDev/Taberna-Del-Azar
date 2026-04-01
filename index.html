@@ -317,6 +317,13 @@ body{background:var(--bg);color:var(--text);font-family:'Crimson Text',serif;min
 .coin-fly{position:fixed;font-size:1.5rem;pointer-events:none;z-index:9998;animation:coinFly 1.2s ease forwards;}
 @keyframes coinFly{0%{transform:translateY(0) rotate(0deg) scale(1);opacity:1;}100%{transform:translateY(-130px) rotate(360deg) scale(.3);opacity:0;}}
 
+/* HAMBURGER */
+.btn-hamburger{display:none;background:transparent;border:1px solid var(--bdr2);border-radius:4px;color:var(--gold2);font-size:1.1rem;padding:.2rem .5rem;cursor:pointer;line-height:1;}
+.ubar.open{display:flex !important;flex-direction:column;align-items:flex-start;gap:.4rem;
+  position:absolute;top:100%;right:0;z-index:200;
+  background:rgba(12,7,3,.98);border:1px solid var(--bdr2);border-radius:0 0 6px 6px;
+  padding:.7rem .9rem;min-width:180px;box-shadow:0 8px 24px rgba(0,0,0,.7);}
+
 /* RESPONSIVE */
 
 /* === TABLET (hasta 940px) === */
@@ -327,30 +334,35 @@ body{background:var(--bg);color:var(--text);font-family:'Crimson Text',serif;min
   .wheel-wrap{width:340px;height:340px;}
   #wcanvas{width:340px;height:340px;}
   .fondo-grid,.perg-grid{grid-template-columns:1fr;}
-  .npc-strip{min-height:400px;}
+  .npc-strip{min-height:400px;background-size:cover;background-position:center bottom;}
+  .npc-inner{padding:1rem 1rem 1rem 0;justify-content:flex-start;}
   .inn-img{height:340px;width:auto;}
-  .npc-char-col{transform:translate(-120px,-80px);}
+  .npc-char-col{transform:translate(-80px,-80px);}
+  .chest-hero{margin-top:-100px;}
   #bub-inn{top:40px;left:calc(50% + 5px);min-width:180px;max-width:220px;transform:scale(1.3);}
   .bub{max-width:180px;}
   .wheel-col{gap:.5rem;}
   .btn-oracle{font-size:.68rem;}
 }
 
-/* === MÓVIL GRANDE (hasta 680px) === */
+/* === MÓVIL (hasta 680px) — ZTE Blade A75 5G (360px) e iPhone 14 Pro Max (430px) === */
 @media(max-width:680px){
-  .hdr{padding:.5rem .75rem;}
+  /* Header con hamburger */
+  .hdr{padding:.5rem .75rem;position:relative;}
   .hdr-runes{display:none;}
   .hdr-sub{display:none;}
-  .ubar{gap:.2rem;}
-  .chip{font-size:.6rem;padding:.13rem .38rem;}
-  .btn-logout,.btn-music{font-size:.6rem;padding:.15rem .4rem;}
+  .ubar{display:none;}
+  .btn-hamburger{display:block;}
 
-  .npc-strip{min-height:300px;}
-  .inn-img{height:270px;}
-  .npc-char-col{transform:translate(-70px,-55px);}
+  /* NPC strip: sin transformaciones de escritorio, el gradiente inferior hace la transición */
+  .npc-strip{min-height:300px;background-size:cover;background-position:center bottom;}
+  .npc-inner{justify-content:center;padding:0;}
+  .inn-img{height:280px;}
+  .npc-char-col{transform:none;}
   #bub-inn{display:none;}
 
-  .chest-hero{flex-wrap:wrap;gap:.6rem;padding:.5rem .9rem;}
+  /* Chest justo debajo del strip, el gradiente de 140px lo fusiona visualmente */
+  .chest-hero{margin-top:0;flex-wrap:wrap;gap:.6rem;padding:.6rem 1rem;}
   .chest-amt{font-size:1.1rem;}
 
   .wheel-wrap{width:280px;height:280px;}
@@ -364,14 +376,13 @@ body{background:var(--bg);color:var(--text);font-family:'Crimson Text',serif;min
 /* === MÓVIL CHICO (hasta 420px) === */
 @media(max-width:420px){
   .hdr{padding:.4rem .6rem;}
-  .hdr-title{font-size:.78rem;}
+  .hdr-title{font-size:.8rem;}
 
-  .npc-strip{min-height:240px;}
-  .inn-img{height:220px;}
-  .npc-char-col{transform:translate(-45px,-35px);}
+  .npc-strip{min-height:260px;}
+  .inn-img{height:250px;}
 
-  .chest-hero{padding:.45rem .6rem;}
-  .chest-wrap img{width:48px;}
+  .chest-hero{padding:.45rem .7rem;}
+  .chest-wrap img{width:52px;}
   .chest-amt{font-size:1rem;}
 
   .wheel-wrap{width:240px;height:240px;}
@@ -439,6 +450,7 @@ body{background:var(--bg);color:var(--text);font-family:'Crimson Text',serif;min
         <div class="hdr-sub">Donde el destino se forja con dados</div>
       </div>
     </div>
+    <button class="btn-hamburger" id="btnHamburger" onclick="toggleMobileMenu()">☰</button>
     <div class="ubar" id="ubar"></div>
   </div>
 
@@ -857,6 +869,23 @@ document.addEventListener('click',function(e){
 // YOUTUBE MUSIC
 // =====================================================================
 var tavernAudio=null;
+function toggleMobileMenu(){
+  var ubar=document.getElementById('ubar');
+  ubar.classList.toggle('open');
+  document.getElementById('btnHamburger').textContent=ubar.classList.contains('open')?'✕':'☰';
+}
+// Cerrar menu si se toca fuera
+document.addEventListener('click',function(e){
+  var ubar=document.getElementById('ubar');
+  if(ubar&&ubar.classList.contains('open')){
+    if(!ubar.contains(e.target)&&e.target.id!=='btnHamburger'){
+      ubar.classList.remove('open');
+      var btn=document.getElementById('btnHamburger');
+      if(btn)btn.textContent='☰';
+    }
+  }
+});
+
 function startMusic(){
   if(musicOn)return;
   if(!tavernAudio){
@@ -947,7 +976,6 @@ function launchApp(){
   buildWheel();
   renderCompendio();
   renderDrinks();
-  renderFondo();
   renderPergamino();
   // Auto-start music after user interaction
   setTimeout(function(){startMusic();},1500);
