@@ -356,29 +356,52 @@ body{background:var(--bg);color:var(--text);font-family:'Crimson Text',serif;min
   .ubar{display:none;}
   .btn-hamburger{display:block;}
 
-  /* NPC strip: sin transformaciones de escritorio, el gradiente inferior hace la transición */
+  /* NPC strip */
   .npc-strip{min-height:300px;background-size:cover;background-position:center bottom;}
   .npc-inner{justify-content:center;padding:0;}
   .inn-img{height:280px;}
   .npc-char-col{transform:none;}
   #bub-inn{display:none;}
 
-  /* Chest justo debajo del strip, el gradiente de 140px lo fusiona visualmente */
+  /* Chest */
   .chest-hero{margin-top:0;flex-wrap:wrap;gap:.6rem;padding:.6rem 1rem;}
   .chest-amt{font-size:1.1rem;}
 
+  /* Layout principal: sin padding lateral excesivo */
+  .tabs-area{padding:.6rem .5rem;}
+
+  /* Tabs: reducir para que las 4 entren en 360px */
+  .tab-nav{gap:.1rem;}
+  .tab-btn{font-size:.58rem;padding:.3rem .38rem;white-space:nowrap;}
+
+  /* Ruleta */
+  .ruleta-grid{gap:.6rem;}
   .wheel-wrap{width:280px;height:280px;}
   #wcanvas{width:280px;height:280px;}
+  .wheel-col{width:100%;}
 
-  .tab-btn{font-size:.68rem;padding:.35rem .55rem;}
+  /* Compendio: contener overflow de botones boost */
+  .compendio{overflow-x:hidden;}
+  .ci{max-width:100%;overflow:hidden;}
+  .ci-name{flex-wrap:wrap;gap:.15rem;}
+  .btn-boost{flex-shrink:0;}
+
+  /* Barra */
   .drinks-grid{grid-template-columns:1fr;}
-  .ruleta-grid{gap:.6rem;}
+
+  /* Sidebar al final: contener texto largo */
+  .sidebar{overflow-x:hidden;}
+  .ri-name{max-width:120px;}
+  .sb-card{overflow:hidden;}
 }
 
 /* === MÓVIL CHICO (hasta 420px) === */
 @media(max-width:420px){
   .hdr{padding:.4rem .6rem;}
-  .hdr-title{font-size:.8rem;}
+  .hdr-title{font-size:.78rem;}
+
+  /* Tabs aún más chicas para 360px */
+  .tab-btn{font-size:.54rem;padding:.28rem .3rem;}
 
   .npc-strip{min-height:260px;}
   .inn-img{height:250px;}
