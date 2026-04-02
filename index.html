@@ -1043,7 +1043,11 @@ function innClick(){
   var u=getUser()||{wins:0};
   var r=rep(u.wins||0);
   var phrases=INN_PHRASES[r.name]||INN_PHRASES['Andrajoso'];
-  document.getElementById('bub-txt').textContent=phrases[Math.floor(Math.random()*phrases.length)];
+  var phrase=phrases[Math.floor(Math.random()*phrases.length)];
+  document.getElementById('bub-txt').textContent=phrase;
+  if(window.innerWidth<=680){
+    toast('⚒ Brom: "'+phrase+'"','tg');
+  }
 }
 function innDrink(){
   document.getElementById('bub-txt').textContent=INN_DRINK_PHRASES[Math.floor(Math.random()*INN_DRINK_PHRASES.length)];
